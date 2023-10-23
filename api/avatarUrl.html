@@ -1,0 +1,19 @@
+<html>
+<head></head>
+<body>
+<script>
+    window.addEventListener("message", function (e) {
+     const blob = localStorage.getItem("SuperDiamondAvatar");
+     if(blob == null) {
+      return null;
+     }
+     else {
+      var binData = [];
+      binaryData.push(blob);
+      var url = window.URL.createObjectURL(new Blob(binData, {type: localStorage.getItem("SuperDiamondAvatarType")}))
+      return url;
+     }
+    })
+</script>
+</body>
+</html>
