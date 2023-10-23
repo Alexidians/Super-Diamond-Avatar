@@ -1,0 +1,37 @@
+<p><input allow="image/*" id="avatarUpload"></input> <button onclick="updateAvatar()">Set Avatar</button></p>
+<p>Preview:</p>
+<p><img alt="Profile Image. you may be seeing error cause image is invalid or you do not have a avatar"></img></p>
+<p>(Note: it may be resized on other websites)</p>
+<script>
+ updatePreview()
+ function updateAvatar() {
+  var file = document.getElementById("avatarUpload").files[0]
+  var type = file.type
+  var extension = type.replace(/(.*)\//g, '')
+  var reader = new FileReader();
+  reader.readAsText(file, "UTF-8");
+  reader.onload = function (evt) {
+   try {
+    blob = evt.target.result;
+    localStorage.setItem("SuperDiamondAvatar", blob)
+    localStorage.setItem("SuperDiamondAvatarExtension", type)
+    localStorage.setItem("SuperDiamondAvatarType", type)
+    updatePreview()
+   }
+   catch(err) {
+    alert("An Error Accoured While Setting Avatar")
+    console.error("Error While Setting Data: " + err)
+   }
+  }
+  reader.onerror = function (evt) {
+   alert("An Error Accoured While Setting Avatar")
+   console.error("File Reader Error")
+  }
+ }
+ function updatePreview() {
+  const blob = localStorage.getItem("SuperDiamondAvatar")
+  var binaryData = [];
+  binaryData.push(blob);
+  var url = window.URL.createObjectURL(new Blob(binaryData, {type: localStorage.getItem("SuperDiamondAvatarType")}))
+ }
+</script>
