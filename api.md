@@ -4,4 +4,6 @@ for now. apis do not require parameters.
 
 whenever the value does not exsist it returns null.
 
-check api list in apis.md
+we created avatar-api.js to help use our API
+
+check API list in apis.md
